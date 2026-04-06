@@ -1,0 +1,20 @@
+{
+  "applinks": {
+    "apps": [],
+    "details": [
+      {
+        "appID": "NJ9R23MKZC.com.speakwide.app",
+        "paths": ["/app/*"]
+      },
+      {
+        "appIDs": ["NJ9R23MKZC.com.speakwide.app"],
+        "components": [
+          {
+            "/": "/app/*",
+            "comment": "Opens app for /app/ paths (iOS 13+)"
+          }
+        ]
+      }
+    ]
+  }
+}

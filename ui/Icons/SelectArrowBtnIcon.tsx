@@ -1,0 +1,14 @@
+export default function SelectArrowBtnIcon() {
+  return (
+    <svg width='17' height='17' viewBox='0 0 17 17' fill='none' xmlns='http://www.w3.org/2000/svg'>
+      <path
+        d='M14.1106 6.33984L9.49229 10.9582C8.94688 11.5036 8.05438 11.5036 7.50896 10.9582L2.89062 6.33984'
+        stroke='#292D32'
+        strokeWidth='1.0625'
+        strokeMiterlimit='10'
+        strokeLinecap='round'
+        strokeLinejoin='round'
+      />
+    </svg>
+  );
+}

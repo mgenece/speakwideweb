@@ -1,0 +1,30 @@
+version: '3'
+
+services:
+  #React Nextjs Node Service
+
+  node:
+    image: webskittersdocker/nvmnode22:latest
+
+    container_name: speakwide-ui-NextJS
+
+    restart: unless-stopped
+
+    working_dir: /home/wtsadmin/myapp
+
+
+
+    volumes:
+      - ./:/home/wtsadmin/myapp
+
+    ports:
+      - '14384:14384'
+    command: >
+      sh -c "yarn start"
+
+#Docker Networks
+
+networks:
+  default:
+    external:
+      name: webskitters

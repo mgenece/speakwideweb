@@ -1,0 +1,324 @@
+* {
+  padding: 0;
+  margin: 0;
+  outline: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-size: 16px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+  -webkit-tap-highlight-color: transparent;
+  margin: 0;
+  padding: 0;
+}
+
+/* ===== Scrollbar CSS ===== */
+/* Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #5f57e7 transparent;
+}
+
+/* Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+  width: 3px;
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #5f57e7;
+  border-radius: 10px;
+}
+
+.containerFluid {
+  padding: 0 50px;
+  max-width: 100%;
+  @media (max-width: 1199px) {
+    padding: 0 16px;
+  }
+}
+
+.inputLabel {
+  font-size: 16px;
+  font-weight: 500;
+  color: #120248;
+  margin-bottom: 6px;
+  font-family: 'Inter', sans-serif;
+}
+
+.black-gradiant-btn {
+  background:
+    linear-gradient(180deg, #7b7b7b -20.5%, #151515 75%),
+    radial-gradient(58.53% 39% at 50% 3%, rgba(255, 255, 255, 0.3) 0%, rgba(0, 0, 0, 0) 89.56%);
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: 600;
+  padding: 13px 40px;
+  border-radius: 10px;
+  &:hover {
+    background:
+      linear-gradient(180deg, #8e8e8e -10%, #1a1a1a 80%),
+      radial-gradient(58.53% 39% at 50% 3%, rgba(255, 255, 255, 0.45) 0%, rgba(0, 0, 0, 0) 89.56%);
+  }
+}
+
+.cmnLayerBack {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+.cmnLayerBackSide {
+  position: fixed;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: -1;
+}
+
+.primary-gradiant-btn {
+  background:
+    radial-gradient(100% 100% at 50% 0%, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0) 100%),
+    #8142e9;
+}
+
+.customPaperSelect {
+  background: #ffffff;
+  box-shadow:
+    0px 0px 4px #e5ddf7,
+    0px 88px 35px rgba(121, 123, 160, 0.01),
+    0px 50px 30px rgba(121, 123, 160, 0.05),
+    0px 22px 22px rgba(121, 123, 160, 0.09),
+    0px 6px 12px rgba(121, 123, 160, 0.1);
+  border-radius: 10px;
+  padding: 20px 11px;
+  margin-top: 7px;
+  overflow: auto !important;
+  li {
+    border-radius: 10px;
+    font-size: 14px;
+    padding: 8px 15px;
+    .menuStack {
+      width: 100%;
+    }
+    p {
+      font-size: 14px;
+    }
+    &:hover {
+      background: #fbf8ff;
+    }
+  }
+}
+.rbc-overlay {
+  .rbc-event {
+    padding: 0;
+    background-color: transparent;
+    overflow: hidden;
+  }
+}
+
+.primaryBtn {
+  background: url('../public/assets/images/btnbg.png') no-repeat;
+  background-size: cover;
+  padding: 0;
+  min-width: 142px;
+  min-height: 50px;
+  transition: all 0.3s ease-in-out;
+  &:hover {
+    opacity: 0.7;
+  }
+}
+
+.secondaryBtn {
+  background: transparent;
+  background-size: cover;
+  padding: 0;
+  min-width: 142px;
+  min-height: 50px;
+  transition: all 0.3s ease-in-out;
+  border: 1px solid #d0b3ff;
+  &:hover {
+    background: url('../public/assets/images/btnbg.png') no-repeat;
+    background-size: cover;
+  }
+}
+.errorBtn {
+  background: url('../public/assets/images/gradient-red.png') no-repeat;
+  background-size: cover;
+  padding: 0;
+  min-width: 142px;
+  min-height: 50px;
+  color: #fff;
+  transition: all 0.3s ease-in-out;
+
+  &:hover {
+    opacity: 0.7;
+  }
+}
+
+.typingloader {
+  width: 24px;
+  aspect-ratio: 2;
+  --_g: no-repeat radial-gradient(circle closest-side, #000 90%, #0000);
+  background:
+    var(--_g) 0% 50%,
+    var(--_g) 50% 50%,
+    var(--_g) 100% 50%;
+  background-size: calc(100% / 3) 50%;
+  animation: l3 1s infinite linear;
+}
+@keyframes l3 {
+  20% {
+    background-position:
+      0% 0%,
+      50% 50%,
+      100% 50%;
+  }
+  40% {
+    background-position:
+      0% 100%,
+      50% 0%,
+      100% 50%;
+  }
+  60% {
+    background-position:
+      0% 50%,
+      50% 100%,
+      100% 0%;
+  }
+  80% {
+    background-position:
+      0% 50%,
+      50% 50%,
+      100% 100%;
+  }
+}
+
+.datepickerItemSc {
+  &.MuiFormControl-root {
+    .MuiFormLabel-root {
+      transform: inherit;
+      top: 12px;
+      left: 20px;
+      @media (max-width: 599px) {
+        top: 14px;
+      }
+      &[data-shrink='true'] {
+        display: none;
+      }
+    }
+    .MuiInputBase-root {
+      padding: 0;
+      border: 1px solid rgba(129, 66, 233, 0.039);
+      border-radius: 10px;
+      background-color: #fbfbfb;
+      min-height: 50px;
+      padding: 12px 10px 12px 20px;
+      line-height: 1;
+      font-size: 16px;
+      .MuiInputBase-input {
+        padding: 0;
+      }
+      .MuiInputAdornment-root {
+        margin: 0;
+        .MuiButtonBase-root {
+          padding: 0;
+          margin: 0;
+        }
+      }
+      .MuiOutlinedInput-notchedOutline {
+        display: none;
+      }
+    }
+  }
+}
+
+.datepickerWrapperBox {
+  @media (max-width: 899px) {
+    flex-wrap: wrap;
+    gap: 10px;
+    > * {
+      width: 100%;
+    }
+  }
+}
+
+.messageInput {
+  .MuiOutlinedInput-notchedOutline {
+    display: none;
+  }
+}
+
+.fullVideoWrap {
+  position: relative;
+  .yourVideo {
+    position: absolute;
+    z-index: 9;
+    bottom: 40px;
+    right: 40px;
+    box-shadow: none;
+    @media (max-width: 899px) {
+      bottom: 30px;
+      right: 40px;
+    }
+  }
+}
+
+.videoLayout {
+  @media (max-width: 1299px) {
+    max-width: 100%;
+    flex-basis: 100%;
+  }
+}
+
+.messageChat {
+  @media (max-width: 1299px) {
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 100dvh;
+    padding: 0 !important;
+    z-index: 99;
+    .messageChatBox {
+      height: 100dvh;
+    }
+  }
+
+  @media (max-width: 899px) {
+    width: 100%;
+  }
+}
+
+.OT_publisher,
+.OT_subscriber {
+  @media (max-width: 599px) {
+    min-width: 150px !important;
+  }
+}
+
+.country-dropdow {
+  .MuiList-root {
+    overflow: auto;
+    max-height: 200px;
+    overflow-x: hidden;
+    li {
+      img {
+        width: 20px;
+        height: 20px;
+      }
+      p {
+        font-size: 12px;
+      }
+    }
+  }
+}

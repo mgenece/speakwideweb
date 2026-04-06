@@ -1,0 +1,43 @@
+function SoundIcon() {
+  return (
+    <svg width='18' height='18' viewBox='0 0 18 18' fill='none' xmlns='http://www.w3.org/2000/svg'>
+      <path
+        d='M2.25 6.1875V11.8125'
+        stroke='currentColor'
+        strokeWidth='1.125'
+        strokeLinecap='round'
+        strokeLinejoin='round'
+      />
+      <path
+        d='M5.625 4.3125V13.6875'
+        stroke='currentColor'
+        strokeWidth='1.125'
+        strokeLinecap='round'
+        strokeLinejoin='round'
+      />
+      <path
+        d='M9 2.4375V15.5625'
+        stroke='currentColor'
+        strokeWidth='1.125'
+        strokeLinecap='round'
+        strokeLinejoin='round'
+      />
+      <path
+        d='M12.375 4.3125V13.6875'
+        stroke='currentColor'
+        strokeWidth='1.125'
+        strokeLinecap='round'
+        strokeLinejoin='round'
+      />
+      <path
+        d='M15.75 6.1875V11.8125'
+        stroke='currentColor'
+        strokeWidth='1.125'
+        strokeLinecap='round'
+        strokeLinejoin='round'
+      />
+    </svg>
+  );
+}
+
+export default SoundIcon;
