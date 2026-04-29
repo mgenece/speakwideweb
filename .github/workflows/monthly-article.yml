@@ -1,0 +1,39 @@
+name: Monthly Speakwide Insights Article
+
+on:
+  schedule:
+    # Runs at 9:00 AM EST on the 1st of every month
+    - cron: '0 14 1 * *'
+  workflow_dispatch:
+    # Also allows manual trigger from GitHub Actions tab
+
+jobs:
+  generate-article:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install Anthropic SDK
+        run: pip install anthropic
+
+      - name: Generate article with Claude
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: python .github/scripts/generate_article.py
+
+      - name: Commit and push new article
+        run: |
+          git config --global user.name "Speakwide Bot"
+          git config --global user.email "bot@speakwide.com"
+          git add articles/
+          git diff --cached --quiet || git commit -m "chore: add monthly insights article [$(date +'%B %Y')]"
+          git push
