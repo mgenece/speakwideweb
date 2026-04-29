@@ -36,6 +36,16 @@ export default function MyDocument(props: MyDocumentProps) {
             gtag('config', 'G-ZMGPKCG72S');
           `}
         </Script>
+        {/* Microsoft Clarity */}
+        <Script strategy="afterInteractive" id="microsoft-clarity">
+          {`
+            (function(c,l,a,r,i,t,y){
+              c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+              t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+              y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+            })(window, document, "clarity", "script", "wj83etb125");
+          `}
+        </Script>
       </body>
     </Html>
   );
