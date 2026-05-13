@@ -1,3 +1,4 @@
+import { sanitizeHtml } from '@/lib/sanitize';
 import { InterpreterSignupAgrementWrapper } from '@/styles/StyledComponents/InterpreterSignupAgrementWrapper';
 import CheckBoxEmptyIcon from '@/ui/Icons/CheckBoxEmptyIcon';
 import CheckedIconCheckBox from '@/ui/Icons/CheckedIconCheckBox';
@@ -74,7 +75,7 @@ function InterpreterSignupAgrement({
           <Typography
             className='termsText'
             component={'div'}
-            dangerouslySetInnerHTML={{ __html: content }}
+            dangerouslySetInnerHTML={{ __html: sanitizeHtml(content) }}
           ></Typography>
         ) : (
           <></>

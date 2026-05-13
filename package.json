@@ -40,6 +40,8 @@
     "dayjs": "^1.11.13",
     "eventemitter3": "^5.0.1",
     "firebase": "^12.4.0",
+    "isomorphic-dompurify": "^3.12.0",
+    "jose": "^6.2.3",
     "lottie-react": "^2.4.0",
     "next": "^15.0.1",
     "next-progress": "^2.3.1",

@@ -33,32 +33,74 @@ const nextConfig: NextConfig = {
   },
 
   async headers() {
-    const headers: { source: string; headers: { key: string; value: string }[] }[] = [];
+    const isProd = process.env.NODE_ENV === 'production';
 
-    if (process.env.NEXT_APP_ENV === 'development') {
-      headers.push({
-        source: '/(.*)', // apply to all routes
-        headers: [
-          {
-            key: 'Content-Security-Policy',
-            value: `
-            default-src * 'unsafe-inline' 'unsafe-eval' data: blob:;
-            script-src * 'unsafe-inline' 'unsafe-eval' data: blob:;
-            style-src * 'unsafe-inline' data: blob:;
-            img-src * data: blob:;
-            font-src * data: blob:;
-            connect-src * data: blob:;
-            media-src * data: blob:;
-            frame-src * data: blob:;
-            `
-              .replace(/\s{2,}/g, ' ')
-              .trim(),
-          },
-        ],
-      });
-    }
+    const cspDirectives = isProd
+      ? [
+          "default-src 'self'",
+          "script-src 'self' 'unsafe-inline' https://www.gstatic.com https://apis.google.com https://js.stripe.com",
+          "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
+          "font-src 'self' https://fonts.gstatic.com data:",
+          "img-src 'self' data: blob: https://speak-wide.dedicateddevelopers.us https://d35se2nt0r15pc.cloudfront.net https://dn9kwwc18qqd2.cloudfront.net",
+          "connect-src 'self' https://*.googleapis.com https://*.firebaseio.com https://fcm.googleapis.com wss://*.firebaseio.com https://*.stripe.com",
+          "frame-src https://*.stripe.com https://withpersona.com",
+          "worker-src 'self' blob:",
+          "media-src 'self' blob:",
+          "object-src 'none'",
+          "base-uri 'self'",
+          "form-action 'self'",
+        ]
+      : [
+          // Development: restrict wildcards but allow localhost tooling
+          "default-src 'self' localhost:* 127.0.0.1:*",
+          "script-src 'self' 'unsafe-inline' 'unsafe-eval' localhost:* 127.0.0.1:* https://www.gstatic.com https://apis.google.com https://js.stripe.com",
+          "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
+          "font-src 'self' https://fonts.gstatic.com data:",
+          "img-src 'self' data: blob: https:",
+          "connect-src 'self' ws://localhost:* wss://localhost:* https: wss:",
+          "frame-src https://*.stripe.com https://withpersona.com",
+          "worker-src 'self' blob:",
+          "media-src 'self' blob:",
+          "object-src 'none'",
+        ];
 
-    return headers;
+    const securityHeaders = [
+      {
+        key: 'Content-Security-Policy',
+        value: cspDirectives.join('; '),
+      },
+      {
+        key: 'X-Frame-Options',
+        value: 'DENY',
+      },
+      {
+        key: 'X-Content-Type-Options',
+        value: 'nosniff',
+      },
+      {
+        key: 'Referrer-Policy',
+        value: 'strict-origin-when-cross-origin',
+      },
+      {
+        key: 'Permissions-Policy',
+        value: 'geolocation=(), microphone=(), camera=()',
+      },
+      ...(isProd
+        ? [
+            {
+              key: 'Strict-Transport-Security',
+              value: 'max-age=31536000; includeSubDomains',
+            },
+          ]
+        : []),
+    ];
+
+    return [
+      {
+        source: '/(.*)',
+        headers: securityHeaders,
+      },
+    ];
   },
 };
 

@@ -26,8 +26,16 @@ export default function Paymentandsubscription() {
   const invitationSectionRef = useRef<HTMLDivElement>(null);
   const router = useRouter();
 
+  const VALID_SECTIONS = ['invitation', 'billing', 'cards'] as const;
+
   useEffect(() => {
-    if (router.query.section === 'invitation' && invitationSectionRef.current) {
+    const section = router.query.section;
+    if (
+      typeof section === 'string' &&
+      VALID_SECTIONS.includes(section as (typeof VALID_SECTIONS)[number]) &&
+      section === 'invitation' &&
+      invitationSectionRef.current
+    ) {
       setTimeout(() => {
         invitationSectionRef.current?.scrollIntoView({
           behavior: 'smooth',

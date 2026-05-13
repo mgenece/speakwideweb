@@ -1,4 +1,5 @@
 import { cmsDataApi } from '@/api/functions/cms.api';
+import { sanitizeHtml } from '@/lib/sanitize';
 import Wrapper from '@/layout/wrapper/Wrapper';
 import {
   Alert,
@@ -53,7 +54,7 @@ function Terms() {
             sx={{
               '& p': { mb: 2 },
             }}
-            dangerouslySetInnerHTML={{ __html: terms?.content ?? '' }}
+            dangerouslySetInnerHTML={{ __html: sanitizeHtml(terms?.content ?? '') }}
           />
 
           {/* <Box mt={4}>

@@ -1,4 +1,5 @@
 import { cmsDataApi } from '@/api/functions/cms.api';
+import { sanitizeHtml } from '@/lib/sanitize';
 import Wrapper from '@/layout/wrapper/Wrapper';
 import { Alert, Box, CircularProgress, Container, Typography } from '@mui/material';
 import { useQuery } from '@tanstack/react-query';
@@ -45,7 +46,7 @@ function Terms() {
             sx={{
               '& p': { mb: 2 },
             }}
-            dangerouslySetInnerHTML={{ __html: terms?.content ?? '' }}
+            dangerouslySetInnerHTML={{ __html: sanitizeHtml(terms?.content ?? '') }}
           />
         </Box>
       </Container>

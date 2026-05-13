@@ -1,17 +1,30 @@
+import { jwtVerify } from 'jose';
 import { NextRequest, NextResponse } from 'next/server';
 import { storageKeys } from './config/constants';
 
-export function middleware(request: NextRequest) {
-  const isLoggedIn = Boolean(request.cookies.get(storageKeys.cookies.jwtToken)?.value);
-  const isOnboard = Boolean(request.cookies.get(storageKeys.cookies.onBoardToken)?.value);
-  const isUser = request.cookies.get(storageKeys.cookies.userRole)?.value === 'user';
+const jwtSecret = new TextEncoder().encode(process.env.NEXT_APP_JWT ?? '');
 
-  // Get the pathname from the request
+async function isValidToken(token: string | undefined): Promise<boolean> {
+  if (!token) return false;
+  try {
+    await jwtVerify(token, jwtSecret);
+    return true;
+  } catch {
+    return false;
+  }
+}
+
+export async function middleware(request: NextRequest) {
+  const rawJwt = request.cookies.get(storageKeys.cookies.jwtToken)?.value;
+  const rawOnboard = request.cookies.get(storageKeys.cookies.onBoardToken)?.value;
+  const userRole = request.cookies.get(storageKeys.cookies.userRole)?.value;
+
+  const isLoggedIn = await isValidToken(rawJwt);
+  const isOnboard = await isValidToken(rawOnboard);
+  const isUser = userRole === 'user';
+
   const { pathname } = request.nextUrl;
 
-  // console.log(isLoggedIn, isOnboard, isUser, '***u');
-
-  // Check if user is trying to access protected routes
   const isProtectedRoute = pathname.startsWith('/interpreter') || pathname.startsWith('/user');
 
   if (isLoggedIn || isOnboard) {

@@ -70,10 +70,6 @@ export interface IAgentProfile {
   fullName: string;
   email: string;
   phoneNumber: string;
-  password: string;
-  confirmPassword: string;
-  socialSecurityNumber?: string;
-  ein?: string;
 }
 
 export interface IInterSignupRes extends BaseApiResponse {

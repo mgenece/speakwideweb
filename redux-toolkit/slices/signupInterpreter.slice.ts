@@ -5,10 +5,6 @@ const initialState: IAgentProfile = {
   fullName: '',
   email: '',
   phoneNumber: '',
-  password: '',
-  confirmPassword: '',
-  socialSecurityNumber: '',
-  ein: '',
 };
 
 export const signupInterpreterSlice = createSlice({
@@ -21,10 +17,6 @@ export const signupInterpreterSlice = createSlice({
         fullName: string;
         email: string;
         phoneNumber: string;
-        password: string;
-        confirmPassword: string;
-        socialSecurityNumber?: string;
-        ein?: string;
       }>
     ) => {
       return { ...state, ...action.payload };

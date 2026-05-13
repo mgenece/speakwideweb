@@ -1,3 +1,4 @@
+import { sanitizeHtml } from '@/lib/sanitize';
 import Wrapper from '@/layout/wrapper/Wrapper';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import { Box, Chip, Container, Divider, Link as MuiLink, Typography } from '@mui/material';
@@ -83,7 +84,7 @@ export default function ArticlePage({ title, date, excerpt, category, contentHtm
 
           {/* Article body */}
           <Box
-            dangerouslySetInnerHTML={{ __html: contentHtml }}
+            dangerouslySetInnerHTML={{ __html: sanitizeHtml(contentHtml) }}
             sx={{
               '& h1': { display: 'none' },
               '& h2': { mt: 4, mb: 2, fontSize: '1.4rem', fontWeight: 700 },
